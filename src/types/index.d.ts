@@ -7,6 +7,8 @@ interface AppItem {
   keywords?: string[]
   darkInvert?: true
   lessRadius?: true
+  navUrl?: string
+  demo?: any
 }
 
 interface CateItem {
