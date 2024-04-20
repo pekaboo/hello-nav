@@ -10,10 +10,10 @@ async function getModules(context: Record<string, AppItem[]>): Promise<CateItem[
   }
   const result: CateItem[] = [];
   for (const path in context) {
-    if (context[path].length === 1 && context[path][0].navUrl) {
+    if (context[path].length === 1 && context[path][0].navUrl||'') {
       result.push({
         title: path.replace(PATH_REG, (_, $1) => $1.replace('_', '/')),
-        children: await getAppItems(context[path][0].navUrl)
+        children: await getAppItems(context[path][0].navUrl||'')
       });
     } else {
       result.push({
