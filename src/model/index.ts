@@ -4,6 +4,10 @@ async function getAppItems(url: string): Promise<AppItem[]> {
   return result;
 }
 async function getModules(context: Record<string, AppItem[]>): Promise<CateItem[]> {
+  if (import.meta.env.VITE_USE_MENU_URL) { 
+    const result: any = await getAppItems(import.meta.env.VITE_USE_MENU_URL)
+    return result
+  }
   const result: CateItem[] = [];
   for (const path in context) {
     if (context[path].length === 1 && context[path][0].navUrl) {
@@ -16,7 +20,7 @@ async function getModules(context: Record<string, AppItem[]>): Promise<CateItem[
         title: path.replace(PATH_REG, (_, $1) => $1.replace('_', '/')),
         children: context[path],
       });
-    }
+    } 
   }
   return result;
 }
