@@ -7,7 +7,16 @@ function onCornerClick(e: React.SyntheticEvent, repository: string) {
   return false
 }
 
-function getImgSrc(fileName: string): string {
+function getImgSrc(fileName: string,home: string): string {
+  function extractHostname(url: string) {
+    const parsedUrl = new URL(url);
+    return parsedUrl.hostname;
+  }
+  // 判断 fileName 是否是一个 URL
+  // 如果是 URL 则直接返回 fileName
+  if (/^https?:\/\//.test(fileName)) return fileName
+  //如果为空。根据接口返回
+  if (!fileName) return  "https://api.iowen.cn/favicon/" + extractHostname(home)+'.png';
   return new URL(`../../assets/icons/${fileName}`, import.meta.url).href
 }
 
@@ -27,7 +36,7 @@ const Cell = ({ homepage, icon, repository, name, darkInvert, lessRadius }: AppI
     <li className="cell">
       <a className="app" href={homepage} title={name}>
         <div className="img-box">
-          <img src={getImgSrc(icon)} className={imgClass} alt={name} />
+          <img src={getImgSrc(icon,homepage)} className={imgClass} alt={name} />
         </div>
         <p className="title" data-size={size}>
           {name}
