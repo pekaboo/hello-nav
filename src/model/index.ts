@@ -16,52 +16,17 @@ async function getModules(context: Record<string, AppItem[]>): Promise<CateItem[
         groups.push(group)
       }
       group.children.push({ 
-        homepage: item.url,
+        homepage: 'https://moyu.wangyitu.tech/link/'+item.code,
         repository: item.url,
         name: item.name,
         "icon": item.icon||'',
-        "keywords": [
-          "code",
+        "keywords": [ 
+          item.code,
           item.cat
          ],
       })
     })
-    console.log(groups)
-//     DEMO
-//     [
-//     {
-//         "title": "自留地",
-//         "children": [
-//             {
-//                 "homepage": "https://poe.com",
-//                 "repository": "https://poe.com",
-//                 "icon": "",
-//                 "keywords": [
-//                     "poe",
-//                     "poe"
-//                 ],
-//                 "name": "POE"
-//             },
-//             {
-//                 "homepage": "https://devv.ai/",
-//                 "name": "devv.ai"
-//             },
-//             {
-//                 "homepage": "https://search.glarity.ai/",
-//                 "name": "glarity.ai"
-//             }
-//         ]
-//     },
-//     {
-//         "title": "每天",
-//         "children": [
-//             {
-//                 "homepage": "https://www.x.com/",
-//                 "name": "twiter"
-//             }
-//         ]
-//     }
-// ]
+    console.log(groups) 
     return groups
   }
   const result: CateItem[] = [];
