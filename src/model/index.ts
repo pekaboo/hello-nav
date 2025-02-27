@@ -16,7 +16,7 @@ async function getModules(context: Record<string, AppItem[]>): Promise<CateItem[
         groups.push(group)
       }
       group.children.push({ 
-        homepage: import.meta.env.VITE_USE_SHORT_CODE_URL+item.code,
+        homepage: "https://moyu.wangyitu.tech/link/"+item.code,
         repository: item.url,
         name: item.name,
         "icon": item.icon||'',
