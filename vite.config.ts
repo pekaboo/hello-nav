@@ -4,6 +4,7 @@ import GlobPlugin from 'vite-plugin-glob'
 
 export default defineConfig({
   plugins: [react(), GlobPlugin()],
+  base: '/hello-nav/',
   esbuild: {
     logOverride: {
       'this-is-undefined-in-esm': 'silent',
